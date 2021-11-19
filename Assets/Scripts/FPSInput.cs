@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[AddComponentMenu("Control Script/FPS Input")]
 public class FPSInput : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 6.0f;
+    [SerializeField] private float _garavity = -9.8f;
 
     private CharacterController _characterController;
     private float _deltaX;
@@ -24,6 +26,9 @@ public class FPSInput : MonoBehaviour
 
         _movement = new Vector3(_deltaX, 0, _deltaZ);
         _movement = Vector3.ClampMagnitude(_movement, _moveSpeed);
+
+        _movement.y = _garavity;
+
         _movement *= Time.deltaTime;
         _movement = transform.TransformDirection(_movement);
         _characterController.Move(_movement);
