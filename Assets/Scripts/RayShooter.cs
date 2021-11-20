@@ -21,8 +21,18 @@ public class RayShooter : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("Hit" + hit.point);
+                StartCoroutine(SphereIndicator(hit.point));
             }
         }
+    }
+
+    private IEnumerator SphereIndicator(Vector3 position)
+    {
+        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.transform.position = position;
+
+        yield return new WaitForSeconds(1);
+
+        Destroy(sphere);
     }
 }
