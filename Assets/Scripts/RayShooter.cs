@@ -10,6 +10,17 @@ public class RayShooter : MonoBehaviour
     private void Start()
     {
         _camera = GetComponent<Camera>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void OnGUI()
+    {
+        int size = 12;
+        float positionX = _camera.pixelWidth / 2 - size / 4;
+        float positionY = _camera.pixelHeight / 2 - size / 2;
+        GUI.Label(new Rect(positionX, positionY, size, size), "*");
     }
 
     private void Update()
