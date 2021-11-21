@@ -6,8 +6,10 @@ public class WarderingAI : MonoBehaviour
 {
     [SerializeField] private float _speed = 3.0f;
     [SerializeField] private float _obstacleRange = 5.0f;
+    [SerializeField] private GameObject _fireballPrefab;
 
     private bool _isAlive;
+    private GameObject _fireball;
 
     private void Start()
     {
@@ -25,7 +27,17 @@ public class WarderingAI : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(ray, 0.75f, out hit))
         {
-            if (hit.distance < _obstacleRange)
+            GameObject hitObject = hit.transform.gameObject;
+            if (hitObject.GetComponent<PlayerCharacter>())
+            {
+                if (_fireball == null)
+                {
+                    _fireball = Instantiate(_fireballPrefab);
+                    _fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                    _fireball.transform.rotation = transform.rotation;
+                }
+            }
+            else if (hit.distance < _obstacleRange)
             {
                 float angle = Random.Range(-110, 110);
                 transform.Rotate(0, angle, 0);
