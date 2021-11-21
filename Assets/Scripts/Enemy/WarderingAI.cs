@@ -7,9 +7,19 @@ public class WarderingAI : MonoBehaviour
     [SerializeField] private float _speed = 3.0f;
     [SerializeField] private float _obstacleRange = 5.0f;
 
+    private bool _isAlive;
+
+    private void Start()
+    {
+        _isAlive = true;
+    }
+
     private void Update()
     {
-        transform.Translate(0, 0, _speed * Time.deltaTime);
+        if (_isAlive)
+        {
+            transform.Translate(0, 0, _speed * Time.deltaTime);
+        }
 
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
@@ -21,5 +31,10 @@ public class WarderingAI : MonoBehaviour
                 transform.Rotate(0, angle, 0);
             }
         }
+    }
+
+    public void SetAlive(bool aliveStatus)
+    {
+        _isAlive = aliveStatus;
     }
 }

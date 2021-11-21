@@ -6,6 +6,12 @@ public class ReactiveTarget : MonoBehaviour
 {
     public void ReactToHit()
     {
+        WarderingAI behavior = GetComponent<WarderingAI>();
+        if (behavior != null)
+        {
+            behavior.SetAlive(false);
+        }
+
         StartCoroutine(Die());
     }
 
