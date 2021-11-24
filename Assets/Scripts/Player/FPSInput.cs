@@ -8,11 +8,22 @@ public class FPSInput : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 6.0f;
     [SerializeField] private float _garavity = -9.8f;
+    [SerializeField] private const float _baseSpeed = 6.0f;
 
     private CharacterController _characterController;
     private float _deltaX;
     private float _deltaZ;
     private Vector3 _movement;
+
+    private void Awake()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
 
     private void Start()
     {
@@ -32,5 +43,10 @@ public class FPSInput : MonoBehaviour
         _movement *= Time.deltaTime;
         _movement = transform.TransformDirection(_movement);
         _characterController.Move(_movement);
+    }
+
+    private void OnSpeedChanged(float value)
+    {
+        _moveSpeed = _baseSpeed * value;
     }
 }

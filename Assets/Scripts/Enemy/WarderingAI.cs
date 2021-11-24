@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class WarderingAI : MonoBehaviour
 {
-    [SerializeField] private float _speed = 3.0f;
+    [SerializeField] private float _baseSpeed = 3.0f;
     [SerializeField] private float _obstacleRange = 5.0f;
     [SerializeField] private GameObject _fireballPrefab;
 
+    private float _currentSpeed = 3.0f;
     private bool _isAlive;
     private GameObject _fireball;
+
+    private void Awake()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
 
     private void Start()
     {
@@ -20,7 +31,7 @@ public class WarderingAI : MonoBehaviour
     {
         if (_isAlive)
         {
-            transform.Translate(0, 0, _speed * Time.deltaTime);
+            transform.Translate(0, 0, _currentSpeed * Time.deltaTime);
         }
 
         Ray ray = new Ray(transform.position, transform.forward);
@@ -48,5 +59,10 @@ public class WarderingAI : MonoBehaviour
     public void SetAlive(bool aliveStatus)
     {
         _isAlive = aliveStatus;
+    }
+
+    private void OnSpeedChanged(float value)
+    {
+        _currentSpeed = _baseSpeed * value;
     }
 }
