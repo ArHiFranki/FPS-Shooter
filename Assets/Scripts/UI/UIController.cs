@@ -9,14 +9,24 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private SettingPopup _settingPopup;
 
-    private void Start()
+    private int _score;
+
+    private void Awake()
     {
-        _settingPopup.Close();
+        Messenger.AddListener(GameEvent.ENEMY_HIT, OnEnemyHit);
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        _scoreText.text = Time.realtimeSinceStartup.ToString();
+        Messenger.RemoveListener(GameEvent.ENEMY_HIT, OnEnemyHit);
+    }
+
+    private void Start()
+    {
+        _score = 0;
+        _scoreText.text = _score.ToString();
+
+        _settingPopup.Close();
     }
 
     public void OnOpenSetting()
@@ -27,5 +37,11 @@ public class UIController : MonoBehaviour
     public void OnPointerDown()
     {
         Debug.Log("Pointer Down");
+    }
+
+    private void OnEnemyHit()
+    {
+        _score++;
+        _scoreText.text = _score.ToString();
     }
 }
