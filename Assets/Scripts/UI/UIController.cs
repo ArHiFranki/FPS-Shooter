@@ -7,6 +7,12 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private SettingPopup _settingPopup;
+
+    private void Start()
+    {
+        _settingPopup.Close();
+    }
 
     private void Update()
     {
@@ -15,7 +21,7 @@ public class UIController : MonoBehaviour
 
     public void OnOpenSetting()
     {
-        Debug.Log("Open Setting");
+        _settingPopup.Open();
     }
 
     public void OnPointerDown()
