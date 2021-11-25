@@ -61,7 +61,7 @@ public class WarderingAI : MonoBehaviour
         _isAlive = aliveStatus;
     }
 
-    private void OnSpeedChanged(float value)
+    public void OnSpeedChanged(float value)
     {
         _currentSpeed = _baseSpeed * value;
     }
