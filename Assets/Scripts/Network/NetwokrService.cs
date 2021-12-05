@@ -6,9 +6,6 @@ using System;
 
 public class NetwokrService
 {
-    private const string xmlApi = 
-    "http://api.openweathermap.org/data/2.5/weather?q=Novosibirsk,ru&mode=xml&APPID=e1e8d773b4bbc8614c2bcf707372a4e5";
-
     private IEnumerator CallAPI(string url, Action<string> callback )
     {
         using (UnityWebRequest request = UnityWebRequest.Get(url))
@@ -32,6 +29,6 @@ public class NetwokrService
 
     public IEnumerator GetWeatherXML(Action<string> callback)
     {
-        return CallAPI(xmlApi, callback);
+        return CallAPI(APIKey.WeatherAPIKey, callback);
     }
 }
