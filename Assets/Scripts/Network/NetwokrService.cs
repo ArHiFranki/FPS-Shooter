@@ -10,9 +10,9 @@ public class NetwokrService
     {
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            yield return request.Send();
+            yield return request.SendWebRequest();
 
-            if (request.isNetworkError)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
                 Debug.LogError("Network problem: " + request.error);
             }
