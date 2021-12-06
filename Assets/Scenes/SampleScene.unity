@@ -2687,6 +2687,7 @@ GameObject:
   - component: {fileID: 860348746}
   - component: {fileID: 860348745}
   - component: {fileID: 860348744}
+  - component: {fileID: 860348748}
   m_Layer: 0
   m_Name: Billboard
   m_TagString: Untagged
@@ -2771,6 +2772,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &860348748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860348743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e6b35056722f4087a009c154fde06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,6 +3197,7 @@ GameObject:
   - component: {fileID: 1173630496}
   - component: {fileID: 1173630498}
   - component: {fileID: 1173630497}
+  - component: {fileID: 1173630499}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3227,6 +3241,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b34865ab4c1da38439da8d42dea8ba4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1173630499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173630495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04966f0c51a4fd4b9b29cff35ce2340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1192870046
@@ -4430,6 +4456,7 @@ GameObject:
   - component: {fileID: 1699042265}
   - component: {fileID: 1699042267}
   - component: {fileID: 1699042268}
+  - component: {fileID: 1699042269}
   - component: {fileID: 1699042266}
   m_Layer: 0
   m_Name: Player
@@ -4580,6 +4607,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2969af8de39ae4f9157f68b271e4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1699042269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699042260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a99daaac026438489f6e1781216980f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 1.5
 --- !u!1 &1702963464
 GameObject:
   m_ObjectHideFlags: 0
