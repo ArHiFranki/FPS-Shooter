@@ -33,4 +33,14 @@ public class SettingPopup : MonoBehaviour
         Messenger<float>.Broadcast(GameEvent.SPEED_CHANGED, speed);
         Debug.Log("Speed: " + speed);
     }
+
+    public void OnSoundToggle()
+    {
+        Managers.Audio.soundMute = !Managers.Audio.soundMute;
+    }
+
+    public void OnSoundVolume(float volume)
+    {
+        Managers.Audio.soundVolume = volume;
+    }
 }
