@@ -29,6 +29,11 @@ public class NetwokrService
 
     public IEnumerator GetWeatherXML(Action<string> callback)
     {
-        return CallAPI(APIKey.WeatherAPIKey, callback);
+        return CallAPI(APIKey.XmlAPIKey, callback);
+    }
+
+    public IEnumerator GetWeatherJSON(Action<string> callback)
+    {
+        return CallAPI(APIKey.JsonAPIKey, callback);
     }
 }
