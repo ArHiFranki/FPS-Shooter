@@ -6,6 +6,9 @@ using System;
 
 public class NetwokrService
 {
+    private const string _webImage = 
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg";
+
     private IEnumerator CallAPI(string url, Action<string> callback )
     {
         using (UnityWebRequest request = UnityWebRequest.Get(url))
@@ -35,5 +38,12 @@ public class NetwokrService
     public IEnumerator GetWeatherJSON(Action<string> callback)
     {
         return CallAPI(APIKey.JsonAPIKey, callback);
+    }
+
+    public IEnumerator DownloadImage(Action<Texture2D> callback)
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(_webImage);
+        yield return request.SendWebRequest();
+        callback(DownloadHandlerTexture.GetContent(request));
     }
 }
