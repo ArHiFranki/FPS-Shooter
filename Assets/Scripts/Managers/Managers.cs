@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WeatherManager))]
+[RequireComponent(typeof(ImagesManager))]
 public class Managers : MonoBehaviour
 {
     public static WeatherManager Weather { get; private set; }
+    public static ImagesManager Images { get; private set; }
 
     private List<IGameManager> _startSequence;
 
     private void Awake()
     {
         Weather = GetComponent<WeatherManager>();
+        Images = GetComponent<ImagesManager>();
 
         _startSequence = new List<IGameManager>();
         _startSequence.Add(Weather);
+        _startSequence.Add(Images);
 
         StartCoroutine(StartManagers());
     }
