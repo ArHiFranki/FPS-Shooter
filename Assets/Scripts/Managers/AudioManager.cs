@@ -5,6 +5,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _music1Source;
+
+    [SerializeField] private string _introBGMusic;
+    [SerializeField] private string _levelBGMusic;
 
     public ManagerStatus status { get; private set; }
     public float soundVolume
@@ -33,5 +37,26 @@ public class AudioManager : MonoBehaviour, IGameManager
     public void PlaySound(AudioClip clip)
     {
         _audioSource.PlayOneShot(clip);
+    }
+
+    public void PlayIntroMusic()
+    {
+        PlayMusic(Resources.Load("Music/" + _introBGMusic) as AudioClip);
+    }
+
+    public void PlayLevelMusic()
+    {
+        PlayMusic(Resources.Load("Music/" + _levelBGMusic) as AudioClip);
+    }
+
+    private void PlayMusic(AudioClip clip)
+    {
+        _music1Source.clip = clip;
+        _music1Source.Play();
+    }
+
+    public void StopMusic()
+    {
+        _music1Source.Stop();
     }
 }
