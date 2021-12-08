@@ -16,20 +16,55 @@ public class AudioManager : MonoBehaviour, IGameManager
         get { return AudioListener.volume; }
         set { AudioListener.volume = value; }
     }
+    public float musicVolume
+    {
+        get { return _musicVolume; }
+        set 
+        {
+            _musicVolume = value;
+            if (_music1Source != null)
+            {
+                _music1Source.volume = _musicVolume;
+            }
+        }
+    }
     public bool soundMute
     {
         get { return AudioListener.pause; }
         set { AudioListener.pause = value; }
     }
+    public bool musicMute
+    {
+        get 
+        {
+            if (_music1Source != null)
+            {
+                return _music1Source.mute;
+            }
+            return false;
+        }
+        set
+        {
+            if (_music1Source != null)
+            {
+                _music1Source.mute = value;
+            }
+        }
+    }
 
     private NetwokrService _network;
+    private float _musicVolume;
 
     public void Startup(NetwokrService service)
     {
         Debug.Log("Audio manager starting...");
         _network = service;
 
+        _music1Source.ignoreListenerVolume = true;
+        _music1Source.ignoreListenerPause = true;
+
         soundVolume = 1f;
+        musicVolume = 1f;
 
         status = ManagerStatus.Started;
     }
